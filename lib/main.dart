@@ -28,21 +28,30 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: appTitle,
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text(appTitle),
-          ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SenderAddressBox(),
-              Column(
-                children: dynamicChat,
+        appBar: AppBar(
+          title: const Text(appTitle),
+        ),
+        body: Column(
+          children: [
+            const SenderAddressBox(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
+              children: dynamicChat,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  BetterWidget(
+                    notifyParent: refresh,
+                  ),
+                ],
               ),
-              BetterWidget(
-                notifyParent: refresh,
-              ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -71,9 +80,6 @@ class BetterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final userInput = TextEditingController();
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         FractionallySizedBox(
           widthFactor: 1,
@@ -86,7 +92,6 @@ class BetterWidget extends StatelessWidget {
                 ),
               ),
               border: const OutlineInputBorder(),
-              // ignore: unnecessary_const
               suffixIcon: IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () {
