@@ -8,8 +8,17 @@ import 'globals.dart' as globals;
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void refresh() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +38,9 @@ class MyApp extends StatelessWidget {
               const SenderAddressBox(),
               ChatBubble(text: globals.message, isCurrentUser: true),
               const DialogExample(),
-              const BetterWidget(),
+              BetterWidget(
+                notifyParent: refresh,
+              ),
               // ChatBubble(text: "${globals.message}", isCurrentUser: true)
             ],
           )),
@@ -54,7 +65,8 @@ void sendREQ(TextEditingController ctlr, queue) {
 }
 
 class BetterWidget extends StatelessWidget {
-  const BetterWidget({super.key});
+  final Function() notifyParent;
+  const BetterWidget({super.key, required this.notifyParent});
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +92,7 @@ class BetterWidget extends StatelessWidget {
                 icon: const Icon(Icons.send),
                 onPressed: () {
                   globals.message = userInput.text;
-                  ChatBubble(
-                    text: userInput.text,
-                    isCurrentUser: true,
-                  );
+                  notifyParent();
                   sendREQ(userInput, globals.globalString);
                   userInput.clear();
                   // globals.message = userInput.text;
