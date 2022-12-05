@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 import 'dart:convert';
 import 'dart:ui' as ui;
 
@@ -16,8 +18,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<ChatBubble> dynamicChat = [];
   void refresh() {
     setState(() {});
+    dynamicChat.add(const ChatBubble(text: "text", isCurrentUser: true));
   }
 
   @override
@@ -36,7 +40,9 @@ class _MyAppState extends State<MyApp> {
             children: [
               // const BetterWidget(),
               const SenderAddressBox(),
-              ChatBubble(text: globals.message, isCurrentUser: true),
+              Column(
+                children: dynamicChat,
+              ),
               const DialogExample(),
               BetterWidget(
                 notifyParent: refresh,
