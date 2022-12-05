@@ -8,37 +8,6 @@ import 'globals.dart' as globals;
 
 void main() => runApp(const MyApp());
 
-class BubbleState extends StatefulWidget {
-  const BubbleState(void Function(Widget nextPage) callback, {super.key});
-
-  @override
-  State<BubbleState> createState() => _BubbleStateState();
-}
-
-class _BubbleStateState extends State<BubbleState> {
-  late BubbleState feedPage;
-  late Widget currentPage;
-
-  @override
-  void initState() {
-    super.initState();
-    feedPage = BubbleState(callback);
-
-    currentPage = feedPage;
-  }
-
-  void callback(Widget nextPage) {
-    setState(() {
-      currentPage = nextPage;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ChatBubble(text: globals.message, isCurrentUser: true);
-  }
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -55,13 +24,12 @@ class MyApp extends StatelessWidget {
           // body: const SenderAddressBox(),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               // const BetterWidget(),
-              SenderAddressBox(),
-              BubbleState(),
-              // ChatBubble(text: globals.message, isCurrentUser: true),
-              DialogExample(),
-              BetterWidget(),
+              const SenderAddressBox(),
+              ChatBubble(text: globals.message, isCurrentUser: true),
+              const DialogExample(),
+              const BetterWidget(),
               // ChatBubble(text: "${globals.message}", isCurrentUser: true)
             ],
           )),
