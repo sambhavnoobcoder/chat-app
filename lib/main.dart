@@ -1,11 +1,9 @@
 // ignore_for_file: unnecessary_new
 
 import 'dart:convert';
-import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-// import 'package:flutter/cupertino.dart';
 import 'globals.dart' as globals;
 
 void main() => runApp(const MyApp());
@@ -33,21 +31,16 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text(appTitle),
           ),
-          // body: const BetterWidget(),
-          // body: const SenderAddressBox(),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // const BetterWidget(),
               const SenderAddressBox(),
               Column(
                 children: dynamicChat,
               ),
-              const DialogExample(),
               BetterWidget(
                 notifyParent: refresh,
               ),
-              // ChatBubble(text: "${globals.message}", isCurrentUser: true)
             ],
           )),
     );
@@ -101,7 +94,6 @@ class BetterWidget extends StatelessWidget {
                   notifyParent();
                   sendREQ(userInput, globals.globalString);
                   userInput.clear();
-                  // globals.message = userInput.text;
                 },
               ),
             ),
@@ -136,7 +128,6 @@ class SenderAddressBox extends StatelessWidget {
                 ),
               ),
               border: const OutlineInputBorder(),
-              // ignore: unnecessary_const
               suffixIcon: IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () {
@@ -164,7 +155,6 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // asymmetric padding
       padding: EdgeInsets.fromLTRB(
         isCurrentUser ? 64.0 : 16.0,
         4,
@@ -172,10 +162,8 @@ class ChatBubble extends StatelessWidget {
         4,
       ),
       child: Align(
-        // align the child within the container
         alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
         child: DecoratedBox(
-          // chat bubble decoration
           decoration: BoxDecoration(
             color: isCurrentUser ? Colors.blue : Colors.grey[300],
             borderRadius: BorderRadius.circular(16),
