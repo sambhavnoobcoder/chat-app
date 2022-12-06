@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'globals.dart' as globals;
+import 'utils.dart' as utils;
 
 class ChatHome extends StatefulWidget {
   const ChatHome({super.key});
@@ -34,7 +32,6 @@ class _ChatHomeState extends State<ChatHome> {
         ),
         body: Column(
           children: [
-            const SenderAddressBox(),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.max,
@@ -55,22 +52,6 @@ class _ChatHomeState extends State<ChatHome> {
       ),
     );
   }
-}
-
-void sendREQ(TextEditingController ctlr, queue) {
-  http.post(
-    Uri.parse('http://141.148.198.149:7777/newMessage'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode({
-      "status": "ok",
-      "channel": "divya",
-      "ID": 69,
-      "body": ctlr.text,
-      "queue": queue
-    }),
-  );
 }
 
 class UserMessageBox extends StatelessWidget {
@@ -98,7 +79,7 @@ class UserMessageBox extends StatelessWidget {
                 onPressed: () {
                   globals.message = userInput.text;
                   notifyParent();
-                  sendREQ(userInput, globals.globalString);
+                  utils.sendREQ(userInput, globals.globalString);
                   userInput.clear();
                 },
               ),
@@ -109,44 +90,6 @@ class UserMessageBox extends StatelessWidget {
           height: 15.5,
           color: Colors.black,
         )
-      ],
-    );
-  }
-}
-
-class SenderAddressBox extends StatelessWidget {
-  const SenderAddressBox({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final senderAddress = TextEditingController();
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        FractionallySizedBox(
-          widthFactor: 1,
-          child: TextField(
-            controller: senderAddress,
-            decoration: InputDecoration(
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.grey,
-                ),
-              ),
-              border: const OutlineInputBorder(),
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.send),
-                onPressed: () {
-                  globals.globalString = senderAddress.text;
-                },
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 20)
       ],
     );
   }
