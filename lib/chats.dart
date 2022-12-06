@@ -25,7 +25,7 @@ class ChatList extends StatelessWidget {
         backgroundColor: const Color(0xFF242132),
         extendBody: true,
         body: Column(
-          children: const [ChatListUser(), ChatListUser()],
+          children: const [ChatListUser(), ChatListUser(), ChatListUser()],
         ),
       ),
     );
@@ -41,16 +41,16 @@ class ChatListUser extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     // ignore: sized_box_for_whitespace
     return Container(
-      height: screenHeight * 0.07,
+      height: screenHeight * 0.075,
       width: screenWidth,
       child: OutlinedButton(
         onPressed: () {},
-        style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.resolveWith((states) => Colors.white),
-        ),
         child: Row(
-          children: [],
+          children: const [
+            CircleAvatar(
+              backgroundImage: AssetImage('assets/images/avatar.png'),
+            )
+          ],
         ),
       ),
     );
