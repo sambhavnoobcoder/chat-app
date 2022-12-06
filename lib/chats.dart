@@ -25,7 +25,20 @@ class ChatList extends StatelessWidget {
         backgroundColor: const Color(0xFF242132),
         extendBody: true,
         body: Column(
-          children: const [ChatListUser(), ChatListUser(), ChatListUser()],
+          children: const [
+            ChatListUser(
+              name: "Nishi",
+              message: "Hey",
+            ),
+            ChatListUser(
+              name: "Divya",
+              message: "Second message",
+            ),
+            ChatListUser(
+              name: "Sam",
+              message: "Testing",
+            )
+          ],
         ),
       ),
     );
@@ -33,7 +46,9 @@ class ChatList extends StatelessWidget {
 }
 
 class ChatListUser extends StatelessWidget {
-  const ChatListUser({super.key});
+  final String name;
+  final String message;
+  const ChatListUser({super.key, required this.name, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +61,43 @@ class ChatListUser extends StatelessWidget {
       child: OutlinedButton(
         onPressed: () {},
         child: Row(
-          children: const [
-            CircleAvatar(
+          children: [
+            const CircleAvatar(
               backgroundImage: AssetImage('assets/images/avatar.png'),
+            ),
+            SizedBox(
+              width: screenWidth * 0.06,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, screenHeight * 0.015, 0, 0),
+                  child: Text(
+                    name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      // fontFamily: 'Roboto Slab',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, screenHeight * 0.007, 0, 0),
+                  child: Text(
+                    message,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      // fontFamily: 'Roboto Slab',
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: const [],
             )
           ],
         ),
