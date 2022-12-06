@@ -29,6 +29,7 @@ class _ChatHomeState extends State<ChatHome> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(appTitle),
+          leading: const Icon(Icons.menu),
         ),
         body: Column(
           children: [
