@@ -21,13 +21,12 @@ class _ChatHomeState extends State<ChatHome> {
 
   @override
   Widget build(BuildContext context) {
-    const appTitle = 'Nishi';
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: appTitle,
+      title: globals.appTitle,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(appTitle),
+          title: const Text(globals.appTitle),
           leading: const Icon(Icons.menu),
         ),
         body: Column(

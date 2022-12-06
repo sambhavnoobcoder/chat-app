@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'globals.dart' as globals;
 import 'chats.dart' as chats;
 
 class HomePage extends StatelessWidget {
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Copain",
+            globals.appTitle,
             style: TextStyle(fontFamily: 'Roboto Slab'),
           ),
           // 0xFF61BBFE

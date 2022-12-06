@@ -5,3 +5,5 @@ bool globalBoolean = true;
 String globalString = "";
 double globalDouble = 10.0;
 String message = "";
+
+const String appTitle = "Copain";
