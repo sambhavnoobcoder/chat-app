@@ -25,6 +25,7 @@ class _ChatHomeState extends State<ChatHome> {
   Widget build(BuildContext context) {
     const appTitle = 'Nishi';
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: appTitle,
       home: Scaffold(
         appBar: AppBar(
@@ -43,7 +44,7 @@ class _ChatHomeState extends State<ChatHome> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  BetterWidget(
+                  UserMessageBox(
                     notifyParent: refresh,
                   ),
                 ],
@@ -72,9 +73,9 @@ void sendREQ(TextEditingController ctlr, queue) {
   );
 }
 
-class BetterWidget extends StatelessWidget {
+class UserMessageBox extends StatelessWidget {
   final Function() notifyParent;
-  const BetterWidget({super.key, required this.notifyParent});
+  const UserMessageBox({super.key, required this.notifyParent});
 
   @override
   Widget build(BuildContext context) {
@@ -183,34 +184,6 @@ class ChatBubble extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class DialogExample extends StatelessWidget {
-  const DialogExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('sender name is'),
-          content: Text(globals.message),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'Cancel'),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'OK'),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      ),
-      child: const Text('Show Dialog'),
     );
   }
 }
