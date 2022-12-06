@@ -105,7 +105,10 @@ class UserMessageBox extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 20)
+        Container(
+          height: 15.5,
+          color: Colors.black,
+        )
       ],
     );
   }
