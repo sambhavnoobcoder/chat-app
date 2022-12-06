@@ -3,6 +3,60 @@ import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'utils.dart' as utils;
 
+class ChatList extends StatelessWidget {
+  const ChatList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(globals.appTitle),
+          leading: const Icon(Icons.menu),
+          actions: [
+            const Icon(Icons.search),
+            Container(
+              width: 15,
+            )
+          ],
+          backgroundColor: const Color(0xFF61BBFE),
+        ),
+        backgroundColor: const Color(0xFF242132),
+        extendBody: true,
+        body: Column(
+          children: const [ChatListUser(), ChatListUser()],
+        ),
+      ),
+    );
+  }
+}
+
+class ChatListUser extends StatelessWidget {
+  const ChatListUser({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    // ignore: sized_box_for_whitespace
+    return Container(
+      height: screenHeight * 0.07,
+      width: screenWidth,
+      child: OutlinedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.resolveWith((states) => Colors.white),
+        ),
+        child: Row(
+          children: [],
+        ),
+      ),
+    );
+  }
+}
+
 class UserChat extends StatefulWidget {
   const UserChat({super.key});
 
