@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'utils.dart' as utils;
 
-class ChatHome extends StatefulWidget {
-  const ChatHome({super.key});
+class UserChat extends StatefulWidget {
+  const UserChat({super.key});
 
   @override
-  State<ChatHome> createState() => _ChatHomeState();
+  State<UserChat> createState() => _UserChatState();
 }
 
-class _ChatHomeState extends State<ChatHome> {
+class _UserChatState extends State<UserChat> {
   List<ChatBubble> dynamicChat = [];
   List<String> dynamicChatMessage = [];
   void refresh() {
