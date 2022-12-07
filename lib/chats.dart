@@ -8,12 +8,13 @@ class ChatList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text(globals.appTitle),
-          leading: const Icon(Icons.menu),
           actions: [
             const Icon(Icons.search),
             Container(
@@ -21,6 +22,51 @@ class ChatList extends StatelessWidget {
             )
           ],
           backgroundColor: const Color(0xFF61BBFE),
+        ),
+        drawer: Drawer(
+          backgroundColor: const Color.fromARGB(255, 60, 56, 78),
+          width: screenWidth * 0.7,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(0, screenHeight * 0.05, 0, 0),
+                alignment: Alignment.center,
+                height: screenHeight * 0.18,
+                child: CircleAvatar(
+                  backgroundImage:
+                      const AssetImage("assets/images/profile.png"),
+                  radius: screenWidth * 0.075 + screenHeight * 0.025,
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: const Text(
+                  "Super User",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, screenHeight * 0.005, 0, 0),
+                alignment: Alignment.center,
+                child: const Text(
+                  "@superuser",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              Expanded(
+                  child: Container(
+                margin: EdgeInsets.fromLTRB(0, screenHeight * 0.025, 0, 0),
+                color: const Color(0xFF242132),
+              ))
+            ],
+          ),
         ),
         backgroundColor: const Color(0xFF242132),
         extendBody: true,
